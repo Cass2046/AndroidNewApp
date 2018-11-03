@@ -17,8 +17,7 @@ public class MainActivity extends TinBasicActivity {
     private TinFragmentPagerAdapter adapter;
 
     @Override
-    protected void
-    onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewPager = findViewById(R.id.viewpager);
         adapter = new TinFragmentPagerAdapter(getSupportFragmentManager());
