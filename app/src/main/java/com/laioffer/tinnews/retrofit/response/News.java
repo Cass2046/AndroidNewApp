@@ -1,19 +1,26 @@
 package com.laioffer.tinnews.retrofit.response;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.UUID;
+
+//7.6 modify the News class
+@Entity
 public class News {
     public String author;
     @NonNull
+    @PrimaryKey
     public String title;
+//    public long id = UUID.randomUUID().toString();
     public String description;
     public String url;
-    @SerializedName("urlToImage")  //add serializedAnnotation
-
+    @SerializedName("urlToImage")
     public String image;
-    @SerializedName("publishedAt")  //add serializedAnnotation
+    @SerializedName("publishedAt")
     public String time;
 
     public News() {
