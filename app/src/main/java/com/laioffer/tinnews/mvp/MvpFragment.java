@@ -7,7 +7,6 @@ import com.laioffer.tinnews.common.TinBasicFragment;
 
 public abstract class MvpFragment<P extends  MvpContract.Presenter> extends TinBasicFragment implements MvpContract.View<P> {
 
-
     protected P presenter;
 
     @Override
@@ -26,7 +25,6 @@ public abstract class MvpFragment<P extends  MvpContract.Presenter> extends TinB
             presenter.onViewAttached(this);
         }
     }
-
 
     @Override
     public void onStop() {

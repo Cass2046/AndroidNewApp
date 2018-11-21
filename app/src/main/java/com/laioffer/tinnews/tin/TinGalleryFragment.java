@@ -1,6 +1,5 @@
 package com.laioffer.tinnews.tin;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,17 +8,22 @@ import android.view.ViewGroup;
 
 import com.laioffer.tinnews.R;
 import com.laioffer.tinnews.mvp.MvpFragment;
+import com.laioffer.tinnews.retrofit.NewsRequestApi;
+import com.laioffer.tinnews.retrofit.RetrofitClient;
 import com.laioffer.tinnews.retrofit.response.News;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
 
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class TinGalleryFragment extends MvpFragment<TinContract.Presenter>
-        implements TinNewsCard.OnSwipeListener, TinContract.View {
+        implements  TinNewsCard.OnSwipeListener, TinContract.View {
 
     private SwipePlaceHolderView mSwipeView;
 
@@ -48,9 +52,19 @@ public class TinGalleryFragment extends MvpFragment<TinContract.Presenter>
                         .setSwipeInMsgLayoutId(R.layout.tin_news_swipe_in_msg_view)
                         .setSwipeOutMsgLayoutId(R.layout.tin_news_swipe_out_msg_view));
 
-        view.findViewById(R.id.rejectBtn).setOnClickListener(v -> mSwipeView.doSwipe(false));
+        view.findViewById(R.id.rejectBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSwipeView.doSwipe(false);
+            }
+        });
 
-        view.findViewById(R.id.acceptBtn).setOnClickListener(v -> mSwipeView.doSwipe(true));
+        view.findViewById(R.id.acceptBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSwipeView.doSwipe(true);
+            }
+        });
 
         return view;
     }
@@ -63,16 +77,13 @@ public class TinGalleryFragment extends MvpFragment<TinContract.Presenter>
         }
     }
 
-
     @Override
     public void onLike(News news) {
         presenter.saveFavoriteNews(news);
-
     }
 
     @Override
     public TinContract.Presenter getPresenter() {
-
         return new TinPresenter();
     }
 }

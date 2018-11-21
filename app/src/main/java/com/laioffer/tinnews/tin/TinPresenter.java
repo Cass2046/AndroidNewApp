@@ -5,9 +5,11 @@ import com.laioffer.tinnews.retrofit.response.News;
 import java.util.List;
 
 public class TinPresenter implements TinContract.Presenter {
+    //hold the reference
     private TinContract.View view;
 
-    private  TinContract.Model model;
+    //link the model with presenter
+    private TinContract.Model model;
 
     public TinPresenter(){
         this.model=new TinModel();
@@ -25,6 +27,7 @@ public class TinPresenter implements TinContract.Presenter {
 
     @Override
     public void onViewAttached(TinContract.View view) {
+        //hold the reference
         this.view = view;
         this.model.fetchData();
 
@@ -33,7 +36,9 @@ public class TinPresenter implements TinContract.Presenter {
 
     @Override
     public void onViewDetached() {
+        //clear the reference
         this.view = null;
+
 
     }
 
@@ -46,6 +51,7 @@ public class TinPresenter implements TinContract.Presenter {
 
     @Override
     public void saveFavoriteNews(News news) {
+
         model.saveFavoriteNews(news);
     }
 

@@ -32,11 +32,9 @@ public class WebViewActivity extends TinBasicActivity implements PopupMenu.OnMen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_web_view);
-        back = findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener(){
+        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
             @Override
-                    public void onClick(View v) {
+            public void onClick(View v) {
                 onBackPressed();
             }
         });
@@ -45,31 +43,6 @@ public class WebViewActivity extends TinBasicActivity implements PopupMenu.OnMen
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new WebViewClient() {
-
-        @Override
-        public  boolean shouldOverrideUrlLoading(WebView view, String url){
-            webView.loadUrl(url);
-            return true;
-        }
-
-
-
-
-
-
-
-        protected int getLayout() {
-            return R.layout.activity_web_view;
-        }
-
-
-        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -84,16 +57,18 @@ public class WebViewActivity extends TinBasicActivity implements PopupMenu.OnMen
                 progressBar.setVisibility(View.GONE);
             }
         });
-//        Bundle bundle = getIntent().getExtras();
-//        if (bundle != null) {
-//            Bundle innerBundle = bundle.getBundle(BUNDLE);
-//            if (innerBundle != null) {
-//                url = innerBundle.getString(URL);
-//                webView.loadUrl(url);
-//            }
-//        }
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            Bundle innerBundle = bundle.getBundle(BUNDLE);
+            if (innerBundle != null) {
+                url = innerBundle.getString(URL);
+                webView.loadUrl(url);
+            }
+        }
         url = "https://www.google.com";
         webView.loadUrl(url);
+
         findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,51 +76,67 @@ public class WebViewActivity extends TinBasicActivity implements PopupMenu.OnMen
             }
         });
     }
-
-    @Override
-    protected int getLayout(){ return R.layout.acticity_web_view; }
-
-    @SuppressLint("RestrictedApi")
-    private void showMenu(View view) {
-        PopupMenu menu = new PopupMenu(this, view);
-        menu.setOnMenuItemClickListener(this);
-        MenuInflater inflater = menu.getMenuInflater();
-        inflater.inflate(R.menu.web_view_items, menu.getMenu());
-        MenuPopupHelper menuHelper = new MenuPopupHelper(this, (MenuBuilder) menu.getMenu(), view);
-        menuHelper.setForceShowIcon(true);
-        menuHelper.show();
-    }
-
-    @Override
-    public boolean onMenuItemClick(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_share:
-                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                String shareBody = "From TinNews: \n" + url;
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                this.startActivity(Intent.createChooser(sharingIntent, "Share TinNews"));
-                break;
-            case R.id.menu_copy:
-                ClipboardManager clipboard = (ClipboardManager)
-                        getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("simple text", url);
-                clipboard.setPrimaryClip(clip);
-                Toast.makeText(this, "Link Copied", Toast.LENGTH_SHORT).show();
-            default:
-                break;
-        }
-        return true;
-    }
-
-    @Override
-    public void doFragmentTransaction(TinBasicFragment basicFragment) {
-
-    }
-
-    @Override
-    public void showSnackBar(String message) {
-
-    }
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                webView.loadUrl(url);
+//                return true;
+//            }
+//
+//            @Override
+//            public void onPageFinished(WebView view, String url) {
+//                // TODO Auto-generated method stub
+//                super.onPageFinished(view, url);
+//                progressBar.setVisibility(View.GONE);
+//            }
+//        });
+//
+//            public void onClick(View v) {
+//                showMenu(v);
+//            }
+//        });
+//
+//
+//    @SuppressLint("RestrictedApi")
+//    private void showMenu(View view) {
+//        PopupMenu menu = new PopupMenu(this, view);
+//        menu.setOnMenuItemClickListener(this);
+//        MenuInflater inflater = menu.getMenuInflater();
+//        inflater.inflate(R.menu.web_view_items, menu.getMenu());
+//        MenuPopupHelper menuHelper = new MenuPopupHelper(this, (MenuBuilder) menu.getMenu(), view);
+//        menuHelper.setForceShowIcon(true);
+//        menuHelper.show();
+//    }
+//
+//    @Override
+//    public boolean onMenuItemClick(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.menu_share:
+//                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+//                sharingIntent.setType("text/plain");
+//                String shareBody = "From TinNews: \n" + url;
+//                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+//                this.startActivity(Intent.createChooser(sharingIntent, "Share TinNews"));
+//                break;
+//            case R.id.menu_copy:
+//                ClipboardManager clipboard = (ClipboardManager)
+//                        getSystemService(Context.CLIPBOARD_SERVICE);
+//                ClipData clip = ClipData.newPlainText("simple text", url);
+//                clipboard.setPrimaryClip(clip);
+//                Toast.makeText(this, "Link Copied", Toast.LENGTH_SHORT).show();
+//            default:
+//                break;
+//        }
+//        return true;
+//    }
+//
+//    @Override
+//    public void doFragmentTransaction(TinBasicFragment basicFragment) {
+//
+//    }
+//
+//    @Override
+//    public void showSnackBar(String message) {
+//
+//    }
 }
 

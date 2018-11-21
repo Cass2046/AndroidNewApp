@@ -68,17 +68,23 @@ public class ContainerFragment extends TinBasicFragment {
         }
     }
 
+
+
     private static Fragment createInitFragmentByIndex(int pageIndex) {
         switch (pageIndex) {
+            //replace the null with TinGalleryFragment
             case HOME_PAGE:
-                return null;
+                return TinGalleryFragment.newInstance();
             case SAVE_PAGE:
                 return SavedNewsFragment.newInstance();
+
+            //1.4
             case PROFILE_PAGE:
-                return null;
+                return TinProfileFragment.newInstance();
             default:
                 throw new IndexOutOfBoundsException();
         }
+
     }
 
     private static Fragment createInitFragmentByIndex(int pageIndex) {

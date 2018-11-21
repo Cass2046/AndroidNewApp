@@ -1,9 +1,11 @@
 package com.laioffer.tinnews;
 
 import android.app.Application;
+import android.arch.persistence.room.Room;
 
 import com.facebook.stetho.Stetho;
 import com.laioffer.tinnews.database.AppDatabase;
+
 
 public class TinApplication extends Application {
     public static AppDatabase database;
@@ -19,7 +21,6 @@ public class TinApplication extends Application {
     public static AppDatabase getDataBase() {
         return database;
     }
-
 
 
 }

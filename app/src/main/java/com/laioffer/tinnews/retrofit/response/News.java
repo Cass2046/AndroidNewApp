@@ -6,21 +6,17 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.UUID;
-
-//7.6 modify the News class
-@Entity
+@Entity(tableName = "news")
 public class News {
     public String author;
     @NonNull
     @PrimaryKey
     public String title;
-//    public long id = UUID.randomUUID().toString();
     public String description;
     public String url;
-    @SerializedName("urlToImage")
+    @SerializedName("urlToImage")  //add serializedAnnotation
     public String image;
-    @SerializedName("publishedAt")
+    @SerializedName("publishedAt")  //add serializedAnnotation
     public String time;
 
     public News() {

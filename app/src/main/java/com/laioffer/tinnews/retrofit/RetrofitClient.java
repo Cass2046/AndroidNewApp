@@ -1,5 +1,3 @@
-
-
 package com.laioffer.tinnews.retrofit;
 
 import java.io.IOException;
@@ -15,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    //replace it with your API key
+    //API key
     private static final String API = "e393a90ff1ff4b49a211309518968f6f";
     //base url
     private static final String BASE_URL = "https://newsapi.org/v2/";
